@@ -1,0 +1,22 @@
+.header{
+  background-color: #101010;
+  height:5vh;
+  color: #fcf9f9;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.header .text{
+  width:60%;
+  text-align: center;
+}
+
+.header .logo{
+  width: 20%;
+}
+
+.header .profile{
+  width: 20%;
+  text-align: right;
+}
