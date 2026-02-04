@@ -2,6 +2,8 @@
 
 # dependencies
 /frontend/package-lock.json
+/backend/luminalibenv
+/backend/.env.local
 /node_modules
 /.pnp
 .pnp.*
@@ -10,6 +12,11 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+
+#python
+__pycache__/
+/backend/.env
+/backend/.env.*
 
 # testing
 /coverage
