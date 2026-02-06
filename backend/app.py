@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 
 from Infrastructure.database import database
+from Infrastructure.objectstore import objectstore
 from book.router import book_router
 from auth.router import auth_router
 
@@ -12,6 +13,7 @@ config=load_dotenv()
 origins=[
     os.getenv("HOST_TO_Allow")
 ]
+#init postgres database
 postgres=database()
 postgres.initDb(
     DATABASE_HOST=os.getenv("DATABASE_HOST"),
@@ -20,6 +22,17 @@ postgres.initDb(
     DATABASE_PORT=int(os.getenv("DATABASE_PORT")),
     DATABASE_USER=os.getenv("DATABASE_USER")
                 )
+
+#init minio object store
+store=objectstore()
+store.init(
+    MINIO_URL=os.getenv("MINIO_URL"),
+    MINIO_ACCESS_KEY=os.getenv("MINIO_ACCESS_KEY"),
+    MINIO_SECRET_KEY=os.getenv("MINIO_SECRET_KEY"),
+    SECURE_CONNECTION=os.getenv("MINIO_SECURE_CONNECTION")
+    )
+
+store.createBucket(os.getenv("MINIO_BUCKET_NAME"))
 
 #commented out because this only need to run when schema changes
 #postgres.create_db_and_tables()
