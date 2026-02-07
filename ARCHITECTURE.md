@@ -56,8 +56,8 @@ _____________________
 
 ## Backend
 
--**Framework:**  Fast APi
--**Python Version** 3.13+
--**ORM Framework** SqlModel
--**DatabaseDriver** Psycopg
--**Database** Postgres18+(containerized)
+- **Framework:**  Fast APi
+- **Python Version** 3.13+
+- **ORM Framework** SqlModel
+- **DatabaseDriver** Psycopg
+- **Database** Postgres18+(containerized)
