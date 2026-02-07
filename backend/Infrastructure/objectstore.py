@@ -1,6 +1,7 @@
+import os
 from minio import Minio
 from minio.error import S3Error
-import os
+
 
 
 class objectstore:
@@ -26,7 +27,6 @@ class objectstore:
 
     # Example: List existing buckets
             buckets = objectstore.client.list_buckets()
-            print("Successfully connected to MinIO! Existing buckets:")
             for bucket in buckets:
                 print(f"* {bucket.name} created at {bucket.creation_date}")
 

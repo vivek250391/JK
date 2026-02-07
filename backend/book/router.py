@@ -1,8 +1,11 @@
+import os
+from uuid import UUID
+
 from fastapi import APIRouter,UploadFile,File
 from dotenv import load_dotenv
-import os
+
 from book.bookapplication import bookApplication
-from book.bookEntity import book
+from book.bookModel import BookModel
 from book.bookobjectstore import BookObjectStore
 from minio.error import S3Error
 
@@ -19,11 +22,22 @@ async def book_get():
     return book
 
 @book_router.post("/api/book")
-async def book_add(book:book):
+async def book_add(model:BookModel):
     application=bookApplication()
-    application.add(book)
+    application.add(model)
     return {"success":True}
 
+@book_router.put('/api/books/:id')
+async def book_update(model:BookModel,id:UUID):
+    application=bookApplication()
+    application.update(id=id,model=model)
+    return {"success":True}
+
+@book_router.delete('/api/books/:id')
+async def book_update(id:UUID):
+    application=bookApplication()
+    application.delete(id)
+    return {"success":True}
 
 @book_router.post('/api/upload/')
 def upload_file_to_minio(file:UploadFile=File(...)):

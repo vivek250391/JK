@@ -1,6 +1,6 @@
 from sqlmodel import create_engine, SQLModel, Session
-from book.bookEntity import book
-from auth.userEntity import user
+from book.bookEntity import book#this is done so that sqlmodel is able to detect the model
+from auth.userEntity import user#this is done so that sqlmodel is able to detect the model
 
 class database:
     engine=None

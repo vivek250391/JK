@@ -18,3 +18,22 @@ class bookRepository:
         session=db.get_session()
         session.add(book)
         session.commit()
+
+    
+    def update(self,id,bookentity):
+        session=db.get_session()
+        statement = select(book).where(book.id == id)
+        results = session.exec(statement)
+        bookrecord = results.one()
+        bookrecord.author = bookentity.author
+        bookrecord.genre=bookentity.genre
+        session.add(bookrecord)
+        session.commit()
+
+    def delete(self,id):
+        session=db.get_session()
+        statement = select(book).where(book.id == id)
+        results = session.exec(statement)
+        bookrecord = results.one()
+        session.delete(bookrecord)
+        session.commit()

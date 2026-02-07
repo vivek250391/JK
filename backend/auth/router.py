@@ -8,12 +8,10 @@ auth_router=APIRouter()
 
 @auth_router.post("/api/auth/Login")
 async def auth_get(model: UserModel):
-    try:
-        data=application.authenticateUser(model)
-        print(data)
-        return {"success":True}
-    except:
-        ValueError("An Error has occured")
+    data=application.authenticateUser(model)
+    print(data)
+    return data
+    
 
 @auth_router.post("/api/auth/signup")
 async def auth_signup(model: UserModel):

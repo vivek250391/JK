@@ -1,4 +1,4 @@
-from sqlmodel import create_engine,select
+from uuid import uuid4
 from Infrastructure.database import database
 from book.bookEntity import book
 from book.bookModel import BookModel
@@ -22,6 +22,22 @@ class bookApplication:
                 ) for ent in data]
 
         return model
-    def add(self,book):
-        repository.add(book)
+    
+    def add(self,model:BookModel):
+        bookentity=book()
+        bookentity.author=model.author
+        bookentity.genre=model.genre
+        bookentity.id=uuid4()
+        bookentity.title=model.title
+        bookentity.path="/uploads/file"
+        repository.add(bookentity)
 
+    def update(self,id,model:BookModel):
+        bookentity=book()
+        bookentity.author=model.author
+        bookentity.genre=model.genre
+        bookentity.title=model.title
+        repository.update(id,bookentity)
+
+    def delete(self,id):
+        repository.delete(id)
