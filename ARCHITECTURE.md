@@ -61,3 +61,11 @@ _____________________
 - **ORM Framework** SqlModel
 - **DatabaseDriver** Psycopg
 - **Database** Postgres18+(containerized)
+- **Authentication** PythonJwt
+- **ModelValidation** Pydantic
+- **APIDocumentation** OpenAPI
+
+## FrontEnd
+- **Framework** Nextjs(in built routing,usefull hooks like use swr,productio grade framework)
+- **extrnalAPIcall client** fetch
+- **Styling** Vanilla Css with modules
