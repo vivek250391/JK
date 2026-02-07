@@ -1,5 +1,6 @@
 from sqlmodel import create_engine, SQLModel, Session
-from book.bookmodel import book
+from book.bookEntity import book
+from auth.userEntity import user
 
 class database:
     engine=None

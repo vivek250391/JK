@@ -35,7 +35,7 @@ store.init(
 store.createBucket(os.getenv("MINIO_BUCKET_NAME"))
 
 #commented out because this only need to run when schema changes
-#postgres.create_db_and_tables()
+postgres.create_db_and_tables()
 session=postgres.get_session()
 
 

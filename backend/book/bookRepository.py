@@ -1,12 +1,12 @@
 from sqlmodel import select
-from book.bookmodel import book
+from book.bookEntity import book
 from Infrastructure.database import database
 
 db=database()
 
 class bookRepository:
     def get(self):
-        data=[]
+        data:list[book]=[]
         session=db.get_session()
         statement=select(book)
         results=session.exec(statement)

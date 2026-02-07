@@ -2,7 +2,7 @@ from fastapi import APIRouter,UploadFile,File
 from dotenv import load_dotenv
 import os
 from book.bookapplication import bookApplication
-from book.bookmodel import book
+from book.bookEntity import book
 from book.bookobjectstore import BookObjectStore
 from minio.error import S3Error
 
