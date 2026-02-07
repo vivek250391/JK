@@ -19,3 +19,45 @@ ________________________________________________________________________________
 
 
 ```
+
+# Architecture DIagram
+
+## interaction FLow
+
+```
+
+____________
+|           |      
+|   user    |
+|___________|
+     ||
+     ||
+     ||
+_____________________
+|                   |      
+| frontend(Nextjs)  |
+|___________________|
+     ||
+     ||
+     ||
+
+
+
+
+
+
+
+
+
+
+
+```
+# Technology Stack
+
+## Backend
+
+-**Framework:**  Fast APi
+-**Python Version** 3.13+
+-**ORM Framework** SqlModel
+-**DatabaseDriver** Psycopg
+-**Database** Postgres18+(containerized)
