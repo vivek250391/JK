@@ -3,6 +3,30 @@
 - copy .env and put proper values
 - run docker compose up command
 
+# Run the Application in dev environment
+- clone the repository
+- copy .env and put proper values
+## backend 
+python -m env luminalibeenv
+.\luminalibenv\scripts\activate.ps1
+pip install -r requirements.txt
+fastapi dev app.py
+for prod mode run
+fastapi run app.py
+
+## database
+container initialization
+ensure volume postgres_data is created by create_volumne
+docker run --name postgres1 -e POSTGRES_PASSWORD=P@ssword1 -d -p 5432:5432 -v postgres_data:/var/lib/postgresql/18/data postgres
+
+## minio
+container initialization
+ensure volume ~/minio/data exists
+docker run -d -p 9000:9000 -p 9001:9001 --name minio-server -e MINIO_ROOT_USER=minioadmin -e MINIO_ROOT_PASSWORD=minioadmin -v ~/minio/data:/data quay.io/minio/minio server /data --console-address ":9001"
+
+
+## frontend
+npm run dev
 
 # project Structure
 
