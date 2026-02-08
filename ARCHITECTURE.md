@@ -20,7 +20,13 @@ ________________________________________________________________________________
 
 ```
 
-# Architecture DIagram
+# choices and their reasoning
+- **modular monlith** best of both worlds, monlith for small and each functional folder can be moved to microservice
+- **Next.js** production ready react based ecosystem
+- **fastapi** -validations and allow for dependency injection
+- **frontend state management**  usestate hook , prefer local storage instead of context api context fails to hold values on browser refresh
+- **SQLModel**-fits with ease with fastapi
+-  **pydantic** -model validation
 
 
 
