@@ -14,7 +14,7 @@ book_router=APIRouter()
 
 objectStore=BookObjectStore()
 
-@book_router.get("/api/book/")
+@book_router.get("/api/book")
 async def book_get():
     application=bookApplication()
     book=application.get()

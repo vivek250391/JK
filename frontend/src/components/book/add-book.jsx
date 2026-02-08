@@ -1,8 +1,11 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { validatebook } from '@/lib/Addbookeventhandler'
 import styles from '@/components/book/add-book.module.css'
+
 export function AddBook(){
+    const router=useRouter()
     const [book,setbook]=useState({author:'',genre:'',title:''})
     const [error,setError]=useState("");
     const [success,setSuccess]=useState("");
@@ -24,7 +27,7 @@ export function AddBook(){
             <div className={styles.error}>{error}</div>
             <div className={styles.success}>{success}</div>
             
-            {success&&<div><button type="button">Add book content</button></div>}
+            {success&&<div><button type="button" onClick={()=>router.push('/book/upload')}>Add book content</button></div>}
             <button type="button" onClick={()=>validatebook(book,setError,setSuccess)}>Add</button>
             </div>
         </div>
