@@ -27,27 +27,27 @@ async def book_add(model:BookModel):
     application.add(model)
     return {"success":True}
 
-@book_router.put('/api/books/:id')
+@book_router.put('/api/books/{id}')
 async def book_update(model:BookModel,id:UUID):
     application=bookApplication()
     application.update(id=id,model=model)
     return {"success":True}
 
-@book_router.delete('/api/books/:id')
+@book_router.delete('/api/books/{id}')
 async def book_update(id:UUID):
     application=bookApplication()
     application.delete(id)
     return {"success":True}
 
-@book_router.post('/api/upload/')
-def upload_file_to_minio(file:UploadFile=File(...)):
+@book_router.post('/api/upload/{id}')
+def upload_file_to_minio(id:UUID,file:UploadFile=File(...)):
     filename = file.filename.replace(" ", "-").strip()
     bucketName=os.getenv("MINIO_BUCKET_NAME")
     if filename == '':
         raise ValueError({"error": "No selected file"})
 
     # Generate a unique object name (e.g., using timestamp or UUID)
-    object_name = f"uploads/{file.filename}" # Simple example, use UUID for production
+    object_name = f"uploads/{id}_{file.filename}" # Simple example, use UUID for production
     try:
         objectStore.insertObject(
                 bucketName,
@@ -58,6 +58,7 @@ def upload_file_to_minio(file:UploadFile=File(...)):
 
         
         print(f"message:File '{file.filename}' uploaded successfully as '{object_name}'bucket: {bucketName}, object_key: {object_name}")
+        return ({"Success":True})
     except S3Error as e:
         print(f"MinIO Error: {e}")
         raise ValueError({"error": f"Failed to upload file: {e}"})

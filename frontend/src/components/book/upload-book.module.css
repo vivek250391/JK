@@ -1,0 +1,17 @@
+.uploadBook{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
+.book{
+    text-align: center;
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color:green
+}

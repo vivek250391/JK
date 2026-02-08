@@ -1,10 +1,11 @@
 'use client'
+import { UploadBook } from "@/components/book/upload-book"
 import { useParams } from "next/navigation"
-export default function UploadBook(){
+export default function UploadBookPage(){
     const params=useParams()
     return (
         <div>
-            upload book for id {params.id}
+            <UploadBook id={params.id} />
         </div>
     )
 }
