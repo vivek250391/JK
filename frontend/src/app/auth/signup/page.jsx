@@ -1,8 +1,8 @@
-import { Login } from "@/components/auth/Login"
-export default function SignUp(){
+import {SignUp} from "@/components/auth/Signup"
+export default function SignUpPage(){
     return (
         <div>
-            <Login />
+            <SignUp />
         </div>
     )
 }
