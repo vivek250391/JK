@@ -8,6 +8,8 @@ from book.bookapplication import bookApplication
 from book.bookModel import BookModel
 from book.bookobjectstore import BookObjectStore
 from minio.error import S3Error
+from book.bookissue.bookissueapplication import BookIssueApplication
+from book.bookissue.bookissueModel import BookIssueModel
 
 load_dotenv()
 book_router=APIRouter()
@@ -38,6 +40,18 @@ async def book_update(id:UUID):
     application=bookApplication()
     application.delete(id)
     return {"success":True}
+
+@book_router.post("/api/books/{id}/borrow")
+async def borrow_book(bookIssueModel:BookIssueModel):
+    application=BookIssueApplication()
+    application.issueBook(bookIssueModel)
+    return {"SUccess":True}
+
+@book_router.post("/api/books/{id}/return")
+async def return_book(id,bookIssueModel:BookIssueModel):
+    application=BookIssueApplication()
+    application.returnBook(id)
+    return {"SUccess":True}
 
 @book_router.post('/api/upload/{id}')
 def upload_file_to_minio(id:UUID,file:UploadFile=File(...)):
