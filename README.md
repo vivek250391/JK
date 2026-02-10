@@ -34,7 +34,10 @@ npm run dev
 ```
 backend
 |
-|--------auth
+|--------aiagent/
+|          |----init.py
+|
+|--------auth/
 |          |----authapplication.py
 |          |----authrepository.py
 |          |----router.py
@@ -43,7 +46,13 @@ backend
 |
 |
 |
-|--------book
+|--------book/
+|          |-----bookissue/
+|          |         |-------bookissueModel.py
+|          |         |-------bookissueEntity.py
+|          |         |-------bookissueRepository.py
+|          |         |-------bookissueApplication.py
+|          |
 |          |-----bookApplication.py
 |          |-----bookEntity.py
 |          |-----bookModel.py
@@ -53,7 +62,7 @@ backend
 |
 |
 |
-|------Infrastructure
+|------Infrastructure/
 |          |----database.py
 |          |----objectstore.py
 |
