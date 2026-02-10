@@ -14,6 +14,15 @@ class BookIssueRepository:
         for entry in results:
             data.append(entry)
         return data
+    
+    def getReviewbyBookId(self,bookId):
+        data=[]
+        session=db.get_session()
+        statement=select(bookIssue).where(bookIssue.bookId==bookId)
+        results=session.exec(statement)
+        for entry in results:
+            data.append(entry)
+        return data
 
     def add(self,bookissue):
         session=db.get_session()

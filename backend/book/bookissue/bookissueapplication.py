@@ -26,5 +26,10 @@ class BookIssueApplication:
         entity=bookIssue()
         entity.review=bookissueModel.review
         repository.updateReview(id,entity)
+
+    def getReivewbybookId(bookId):
+        data=repository.getReviewbyBookId(bookId)
+        model=[BookIssueModel(review=ent.review) for ent in data]
+        return model
     
         
