@@ -27,6 +27,7 @@ ________________________________________________________________________________
 - **frontend state management**  usestate hook , prefer local storage instead of context api context fails to hold values on browser refresh
 - **SQLModel**-fits with ease with fastapi
 -  **pydantic** -model validation
+-  **asyncio** - connected/detached thread execution
 
 
 
