@@ -41,3 +41,6 @@ class bookApplication:
 
     def delete(self,id):
         repository.delete(id)
+
+
+    

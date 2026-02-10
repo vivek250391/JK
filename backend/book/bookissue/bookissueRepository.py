@@ -22,9 +22,19 @@ class BookIssueRepository:
 
     def update(self,id,bookissue):
         session=db.get_session()
-        statement=select(bookIssue).where(bookIssue.bookId==id)
+        statement=select(bookIssue).where(bookIssue.id==id)
         records=session.exec(statement)
         record=records.one()
         record.returnDate=bookissue.returnDate
+        session.add(record)
+        session.commit()
+
+    def updateReview(self,id,bookissue):
+        print(id)
+        session=db.get_session()
+        statement=select(bookIssue).where(bookIssue.id==id)
+        records=session.exec(statement)
+        record=records.one()
+        record.review=bookissue.review
         session.add(record)
         session.commit()

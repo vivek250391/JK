@@ -9,9 +9,9 @@ class BookIssueApplication:
     def issueBookDetails(self):
         return repository.get()
 
-    def issueBook(self,bookIssueModel:BookIssueModel):
+    def issueBook(self,id,bookIssueModel:BookIssueModel):
         bookissue=bookIssue()
-        bookissue.bookId=bookIssueModel.bookId
+        bookissue.bookId=id
         bookissue.borrowDate=datetime.now()
         bookissue.id=uuid4()
         bookissue.userId=bookIssueModel.userId #this should be current user
@@ -21,4 +21,10 @@ class BookIssueApplication:
         entity=bookIssue()
         entity.returnDate=datetime.now()
         repository.update(id,entity)
+    
+    def updateReview(self,id,bookissueModel:BookIssueModel):
+        entity=bookIssue()
+        entity.review=bookissueModel.review
+        repository.updateReview(id,entity)
+    
         

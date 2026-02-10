@@ -42,15 +42,21 @@ async def book_update(id:UUID):
     return {"success":True}
 
 @book_router.post("/api/books/{id}/borrow")
-async def borrow_book(bookIssueModel:BookIssueModel):
+async def borrow_book(id,bookIssueModel:BookIssueModel):
     application=BookIssueApplication()
-    application.issueBook(bookIssueModel)
+    application.issueBook(id,bookIssueModel)
     return {"SUccess":True}
 
 @book_router.post("/api/books/{id}/return")
 async def return_book(id,bookIssueModel:BookIssueModel):
     application=BookIssueApplication()
     application.returnBook(id)
+    return {"SUccess":True}
+
+@book_router.post("/api/books/{id}/review")
+async def return_book(id,bookIssueModel:BookIssueModel):
+    application=BookIssueApplication()
+    application.updateReview(id,bookIssueModel)
     return {"SUccess":True}
 
 @book_router.post('/api/upload/{id}')
