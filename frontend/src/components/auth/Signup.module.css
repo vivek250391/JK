@@ -1,0 +1,30 @@
+.Login{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40%;
+    margin-top: 15%;
+    font-size: 2rem;
+}
+
+.heading{
+    width:50%;
+    background-color: black;
+}
+
+.Login div input[type="text"]{
+    font-size: 1rem;
+    
+}
+
+.Login div input[type="password"]{
+    font-size: 1rem;
+    
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color: green;
+}
