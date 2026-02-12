@@ -34,7 +34,8 @@ class AuthApplication:
     def authenticateUser(self,model: UserModel):
         self.setContext()
         userentity=repository.getByUsername(model.username)
-        passwordHash=self.hashPassword(model.password)
+        #passwordHash=self.hashPassword(model.password)
+        print(model)
         flag=True
         if len(userentity)==0:
             Flag=False
@@ -42,7 +43,7 @@ class AuthApplication:
         if model.username!=userentity[0].username:
             Flag=False
             return {"error":"Either username or password is invalid"}
-        if not self.verifyPassword(passwordHash,userentity[0].password):
+        if not self.verifyPassword(model.password,userentity[0].password):
             Flag=False
             return {"error":"Either username or password is invalid"}
         if flag==True:

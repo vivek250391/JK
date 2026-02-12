@@ -20,3 +20,11 @@
     font-size: 1rem;
     
 }
+
+.error{
+    color: red;
+}
+
+.success{
+    color: green;
+}
