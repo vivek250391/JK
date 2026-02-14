@@ -39,3 +39,13 @@ def test_book_application_delete_positive():
     data=a.delete(id=uuid4())
     Mock.assert_called_once(bookRepository.delete)
     assert data==None
+
+def test_book_application_get_by_id():
+    id=uuid4()
+    bookentity=book(id=id,title="fake title",path="fake path",author="fake author")
+    bookRepository.getbyId=Mock(return_value=bookentity)
+    a=bookApplication()
+    data=a.getbyID(id=uuid4())
+    Mock.assert_called_once(bookRepository.getbyId)
+    assert data['author']=="fake author"
+    assert data['id']==id
