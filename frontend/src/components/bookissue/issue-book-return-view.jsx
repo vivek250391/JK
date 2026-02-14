@@ -34,6 +34,7 @@ export function ReturnBookView(){
 
     return (
         <div className={Styles.returnBooks}>
+            <button onClick={()=>router.push("/bookissue")}>return to issue book</button>
             {issuedBooks.map((issuedbook,index)=>renderissuedBooks(issuedbook,index))}
         </div>
     );

@@ -16,7 +16,7 @@ export function IssueBookView(){
 
     function renderBooks(book,index){
         return (
-            <div className={Styles.book}>
+            <div className={Styles.book} key={book.id}>
             <div>{book.id}</div>
             <div>{book.title}</div>
             <button type="button" onClick={()=>router.push(`/bookissue/issue/${book.id}`)}>issue</button>
@@ -26,6 +26,8 @@ export function IssueBookView(){
 
     return (
         <div className={Styles.IssueBooks}>
+            <button type="button" onClick={()=>router.push('/bookissue/return')}>Return Book</button>
+            <button type="button" onClick={()=>router.push('/book/view')}>Book operations</button>
            {books.map((book,index)=>renderBooks(book,index))} 
         </div>
     )
