@@ -9,7 +9,6 @@ auth_router=APIRouter()
 @auth_router.post("/api/auth/Login")
 async def auth_get(model: UserModel):
     data=application.authenticateUser(model)
-    print(data)
     return data
     
 
@@ -17,3 +16,8 @@ async def auth_get(model: UserModel):
 async def auth_signup(model: UserModel):
     application.signup(model)
     return {"success":True}
+
+@auth_router.post("/api/auth/users/{name}")
+async def auth_signup(name):
+    data=application.getbyusername(name)
+    return data

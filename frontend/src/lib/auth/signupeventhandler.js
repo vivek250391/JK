@@ -56,3 +56,16 @@ async function addlogin(signupForm,setError,setSuccess){
     else
         setError(response.status)
 }
+
+export async function getuserbyname(username){
+    let data={}
+    console.log(process.env.NEXT_PUBLIC_API_URL)
+    const response =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users/${username}`,{
+        method:"POST"
+    })
+
+    if (response.status===200)
+        return response.json()
+    else
+        console.log(response.statusText)
+}

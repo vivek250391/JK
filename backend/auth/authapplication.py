@@ -64,3 +64,8 @@ class AuthApplication:
         userentity.password=passwordHash
         userentity.lastlogin=datetime.now()
         repository.add(userentity)
+
+    def getbyusername(self,username):
+        userentity=repository.getByUsername(username)
+        model=[UserModel(username=ent.username,id=ent.id)for ent in userentity]
+        return model

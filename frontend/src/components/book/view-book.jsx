@@ -7,7 +7,6 @@ export function ViewBook(){
     const router=useRouter()
     const [book,setBook]=useState([])
     useEffect(()=>{
-        console.log(1)
         async function asynccall(){
             const data=await getBooks()
             setBook(data)

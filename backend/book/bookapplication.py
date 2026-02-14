@@ -42,5 +42,10 @@ class bookApplication:
     def delete(self,id):
         repository.delete(id)
 
+    def getbyID(self,id):
+        entity:book=repository.getbyId(id)
+        model:BookModel=entity.model_dump(include="title,id,author,genre")
+        return model
+
 
     

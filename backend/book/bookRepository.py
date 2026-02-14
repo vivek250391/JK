@@ -14,6 +14,13 @@ class bookRepository:
             data.append(item)
         return data
     
+    def getbyId(self,id):
+        session=db.get_session()
+        statement=select(book).where(book.id==id)
+        results=session.exec(statement)
+        bookentity=results.one()
+        return bookentity
+    
     def add(self,book):
         session=db.get_session()
         session.add(book)

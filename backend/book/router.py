@@ -23,6 +23,13 @@ async def book_get():
     print(book)
     return book
 
+@book_router.get("/api/book/{id}")
+async def book_get(id):
+    application=bookApplication()
+    book=application.getbyID(id)
+    print(book)
+    return book
+
 @book_router.post("/api/book")
 async def book_add(model:BookModel):
     application=bookApplication()
