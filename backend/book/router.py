@@ -66,6 +66,12 @@ async def return_book(id,bookIssueModel:BookIssueModel):
     application.returnBook(id)
     return {"Success":True}
 
+@book_router.get("/api/books/{user}/{bookIssueId}/isbookissued")
+async def return_book(user,bookIssueId):
+    application=BookIssueApplication()
+    data=application.isbookissuedToUser(user,bookIssueId)
+    return {"isbookIssued":data}
+
 @book_router.post("/api/books/{id}/review")
 async def return_book(id,bookIssueModel:BookIssueModel):
     application=BookIssueApplication()

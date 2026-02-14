@@ -37,4 +37,7 @@ class BookIssueApplication:
         model=[BookIssueModel(id=ent.id,bookId=ent.bookId,userId=ent.userId,borrowDate=ent.borrowDate) for ent in data]
         return model
     
+    def isbookissuedToUser(self,bookIssueId,userId):
+        data=repository.isBookIssuedToUser(bookIssueId,userId)
+        return data
         

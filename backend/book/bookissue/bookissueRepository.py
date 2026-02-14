@@ -56,3 +56,17 @@ class BookIssueRepository:
         record.review=bookissue.review
         session.add(record)
         session.commit()
+
+    def isBookIssuedToUser(self,userId,bookIssueId):
+        data=[]
+        session=db.get_session()
+        statement=select(bookIssue).where(bookIssue.userId==userId).where(bookIssue.id==bookIssueId)
+            
+        records=session.exec(statement)
+        record=records.first()
+        if record == None:
+            return False
+        else :
+            return True
+        
+        
