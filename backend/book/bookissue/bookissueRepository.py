@@ -1,4 +1,5 @@
 from sqlmodel import select
+from datetime import datetime
 from Infrastructure.database import database
 from book.bookissue.bookissueEntity import bookIssue
 
@@ -10,6 +11,15 @@ class BookIssueRepository:
         data=[]
         session=db.get_session()
         statement=select(bookIssue)
+        results=session.exec(statement)
+        for entry in results:
+            data.append(entry)
+        return data
+    
+    def getBookissuestoReturn(self):
+        data=[]
+        session=db.get_session()
+        statement=select(bookIssue).where(bookIssue.returnDate==None)
         results=session.exec(statement)
         for entry in results:
             data.append(entry)
@@ -34,12 +44,11 @@ class BookIssueRepository:
         statement=select(bookIssue).where(bookIssue.id==id)
         records=session.exec(statement)
         record=records.one()
-        record.returnDate=bookissue.returnDate
+        record.returnDate=datetime.now()
         session.add(record)
         session.commit()
 
     def updateReview(self,id,bookissue):
-        print(id)
         session=db.get_session()
         statement=select(bookIssue).where(bookIssue.id==id)
         records=session.exec(statement)

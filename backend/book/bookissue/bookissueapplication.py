@@ -27,9 +27,14 @@ class BookIssueApplication:
         entity.review=bookissueModel.review
         repository.updateReview(id,entity)
 
-    def getReivewbybookId(bookId):
+    def getReivewbybookId(self,bookId):
         data=repository.getReviewbyBookId(bookId)
         model=[BookIssueModel(review=ent.review) for ent in data]
+        return model
+    
+    def getIssuedbookNotReturned(self):
+        data=repository.getBookissuestoReturn()
+        model=[BookIssueModel(id=ent.id,bookId=ent.bookId,userId=ent.userId,borrowDate=ent.borrowDate) for ent in data]
         return model
     
         

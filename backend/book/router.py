@@ -52,19 +52,25 @@ async def book_update(id:UUID):
 async def borrow_book(id,bookIssueModel:BookIssueModel):
     application=BookIssueApplication()
     application.issueBook(id,bookIssueModel)
-    return {"SUccess":True}
+    return {"Success":True}
+
+@book_router.get("/api/books/return")
+async def return_book():
+    application=BookIssueApplication()
+    data=application.getIssuedbookNotReturned()
+    return data
 
 @book_router.post("/api/books/{id}/return")
 async def return_book(id,bookIssueModel:BookIssueModel):
     application=BookIssueApplication()
     application.returnBook(id)
-    return {"SUccess":True}
+    return {"Success":True}
 
 @book_router.post("/api/books/{id}/review")
 async def return_book(id,bookIssueModel:BookIssueModel):
     application=BookIssueApplication()
     application.updateReview(id,bookIssueModel)
-    return {"SUccess":True}
+    return {"Success":True}
 
 @book_router.post('/api/upload/{id}')
 def upload_file_to_minio(id:UUID,file:UploadFile=File(...)):
