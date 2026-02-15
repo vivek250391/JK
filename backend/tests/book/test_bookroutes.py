@@ -25,3 +25,27 @@ def test_book_get_by_id_positive():
     assert response.status_code==200
     assert response.json()["path"]=="Fake path"
     assert response.json()["title"]=="Fake title"
+
+def test_book_add_positive():
+    id=str(uuid4())
+    model={"id":id,"title":"Fake title","path":"Fake path","author":"Fake author","genre":"Fake genre"}
+    bookApplication.add=Mock(return_value=None)
+    response=client.post(f"/api/book",json=model)
+    assert response.status_code==200
+    assert response.json()["success"]==True
+
+def test_book_update_positive():
+    id=str(uuid4())
+    model={"id":id,"title":"Fake title","path":"Fake path","author":"Fake author","genre":"Fake genre"}
+    bookApplication.update=Mock(return_value=None)
+    response=client.put(f"/api/books/{id}",json=model)
+    assert response.status_code==200
+    assert response.json()["success"]==True
+
+def test_book_delete_positive():
+    id=str(uuid4())
+    model={"id":id,"title":"Fake title","path":"Fake path","author":"Fake author","genre":"Fake genre"}
+    bookApplication.update=Mock(return_value=None)
+    response=client.delete(f"/api/books/{id}")
+    assert response.status_code==200
+    assert response.json()["success"]==True
