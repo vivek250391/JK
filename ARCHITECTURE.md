@@ -10,7 +10,7 @@ we can also create a common functional area which houses common functionality an
 
 ___________________________________________________________________________________________________________________________
 |                                                                                                                         |
-|          Frontend(NextJs)  ========>  Backend(NextJs)====>Database(postgres)                                            |
+|          Frontend(NextJs)  ========>  Backend(Python)====>Database(postgres)                                            |
 |                                           || \\                                                                         |
 |                                           ||   \\======> Ml Models                                                      |
 |                                           ||                                                                            |
