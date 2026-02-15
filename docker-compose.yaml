@@ -1,8 +1,8 @@
-version: '3.8'
+
 
 services:
   postgres:
-    image: postgres:18-alpine
+    image: postgres:18.2-alpine
     container_name: bookdb_postgres
     environment:
       POSTGRES_USER: postgres
@@ -37,7 +37,7 @@ services:
 
 
 
-backend:
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -49,14 +49,12 @@ backend:
     depends_on:
       postgres:
         condition: service_healthy
-      redis:
-        condition: service_healthy
     volumes:
       - ./backend:/app
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 
-frontend:
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile

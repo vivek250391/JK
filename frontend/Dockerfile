@@ -1,5 +1,5 @@
 # Stage 1: Base image and dependencies
-FROM node:25-alpine AS base
+FROM node:25-alpine3.22 AS base
 WORKDIR /app
 COPY package.json yarn.lock* ./
 RUN yarn install --frozen-lockfile
@@ -13,7 +13,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN yarn build
 
 # Stage 3: Production runtime (lean image)
-FROM node:25-alpine AS runner
+FROM node:25-alpine3.22 AS runner
 WORKDIR /app
 
 # Set production environment and disable telemetry

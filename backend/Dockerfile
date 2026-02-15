@@ -1,5 +1,5 @@
 # Set the python version as a build-time argument
-ARG PYTHON_VERSION=3.12-slim
+ARG PYTHON_VERSION=3.14-slim
 
 # Use an official Python base image
 FROM python:${PYTHON_VERSION}
