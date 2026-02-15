@@ -2,7 +2,7 @@
 FROM node:25-alpine3.22 AS base
 WORKDIR /app
 COPY package.json yarn.lock* ./
-RUN yarn install --frozen-lockfile
+RUN npm install
 
 # Stage 2: Build the Next.js application
 FROM base AS build
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY . .
 # Disable telemetry during the build
 ENV NEXT_TELEMETRY_DISABLED 1 
-RUN yarn build
+RUN npm run build
 
 # Stage 3: Production runtime (lean image)
 FROM node:25-alpine3.22 AS runner
