@@ -48,3 +48,41 @@ ________________________________________________________________________________
 - **Framework** Nextjs(in built routing,usefull hooks like use swr,productio grade framework)
 - **extrnalAPIcall client** fetch
 - **Styling** Vanilla Css with modules
+
+## database schema(entities)
+
+
+### book
+```
+class book(SQLModel, table=True):
+    id: UUID = Field(default_factory=uuid4, primary_key=True)
+    title: str
+    path: str
+    author: str
+    genre: str|None=Field(default=None)
+```
+
+### bookissue
+```
+class bookIssue(SQLModel, table=True):
+    id: UUID = Field(default_factory=uuid4, primary_key=True)
+    bookId:UUID=Field(default=None,foreign_key="book.id")
+    userId:UUID=Field(default=None,foreign_key="user.id")
+    review:str|None=Field(default=None)
+    borrowDate:datetime|None=Field(default=datetime.now())
+    returnDate:datetime|None=Field(default=None)
+```
+
+### authentication
+```
+
+class user(SQLModel,table=True):
+    id:  UUID = Field(default_factory=uuid4, primary_key=True)
+    username: str
+    password: str
+    email:str
+    disabled:bool|None=None
+    address:str|None=None
+    lastlogin: datetime
+
+```
