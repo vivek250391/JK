@@ -10,6 +10,11 @@ fastapi dev app.py
 
 ```
 
+## run tests
+```bash
+python -m pytest
+```
+
 ## Technology stack
 
 - **Framework:**  Fast APi
