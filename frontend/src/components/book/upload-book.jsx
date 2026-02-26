@@ -1,7 +1,9 @@
 import styles from '@/components/book/upload-book.module.css'
 import {validateFileType,sendData} from '@/lib/uploadbookeventhandler'
 import { useState,useRef } from 'react'
+import { useRouter } from 'next/navigation'
 export function UploadBook({id}){
+    const router=useRouter()
     const [error,setError]=useState("")
     const [fileExtension,setFileExtension]=useState("")
     const [success,setSuccess]=useState("")
@@ -21,6 +23,7 @@ export function UploadBook({id}){
             </div>
             <div>
                 <button type="button" onClick={()=>sendData(id,setError,setSuccess,fileExtension,fileInputRef)} >Submit</button>
+                <button type="button" onClick={()=>router.push('/book/view')}>Back to Books</button>
             </div>
             </div>
         </div>

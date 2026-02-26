@@ -3,25 +3,29 @@ import os
 from uuid import UUID
 from dotenv import load_dotenv
 from book.bookissue.bookissueapplication import BookIssueApplication
+from aiagent.aiapplication import AiApplication
 
+b=BookIssueApplication()
 async def greet_message():
     await ai_summary()
     print("hello world 2026")
     return "hello world 2026"
 
-async def get_comments(bookId):
-    data=BookIssueApplication.getReivewbybookId(bookId)
+def get_comments(bookId):
+    data=b.getReivewbybookId(bookId)
     arrayofcommentsbyspaces=""
     if len(data)==0:
         return
     for entry in data:
-        arrayofcommentsbyspaces+=entry.review
+        if entry.review!=None:
+            arrayofcommentsbyspaces+=entry.review
         print(arrayofcommentsbyspaces)
     return arrayofcommentsbyspaces
     
 
 async def ai_summary():
-    text_to_summarize=get_comments()
+    bookIdtoUse='6d6a4b22-ee49-40fa-9581-b18968877840'
+    text_to_summarize=get_comments(bookIdtoUse)
 
     # Define your prompt template and text
     system_prompt = "You are an expert summarizer. Provide a concise summary of the given text."
@@ -38,3 +42,7 @@ async def ai_summary():
 
     # Print the generated summary
     print(response['message']['content'])
+    a=AiApplication()
+    a.saveAiGeneratedSummary(bookIdtoUse,response['message']['content'])
+
+    

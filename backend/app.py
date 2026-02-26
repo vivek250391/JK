@@ -12,11 +12,12 @@ from Infrastructure.objectstore import objectstore
 from book.router import book_router
 from auth.router import auth_router
 from aiagent.init import greet_message
+from aiagent.router import ai_router
 
 
 
 
-#asyncio.gather(greet_message())
+asyncio.gather(greet_message())
 config=load_dotenv()
 #we could use .env.local and env.prod and so provided we set environment variable in the system for example dev local prod
 origins=[
@@ -61,3 +62,4 @@ app.add_middleware(
 
 app.include_router(book_router)
 app.include_router(auth_router)
+app.include_router(ai_router)

@@ -2,6 +2,7 @@ from sqlmodel import create_engine, SQLModel, Session
 from book.bookEntity import book#this is done so that sqlmodel is able to detect the model
 from auth.userEntity import user#this is done so that sqlmodel is able to detect the model
 from book.bookissue.bookissueEntity import bookIssue
+from aiagent.aiEntity import AiEntity
 
 class database:
     engine=None
