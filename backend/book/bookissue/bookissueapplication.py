@@ -29,7 +29,7 @@ class BookIssueApplication:
 
     def getReivewbybookId(self,bookId):
         data=repository.getReviewbyBookId(bookId)
-        model=[BookIssueModel(review=ent.review) for ent in data]
+        model=[BookIssueModel(review=ent.review,bookId=ent.bookId) for ent in data]
         return model
     
     def getIssuedbookNotReturned(self):

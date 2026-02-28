@@ -1,7 +1,8 @@
 
 import styles from './edit-book.module.css'
+import { useRouter } from 'next/navigation'
 export function EditBook({id}){
-    
+    const router=useRouter()
     if(!id)
         return (
             <div>
@@ -26,6 +27,7 @@ export function EditBook({id}){
                 <div><input type="text" /></div>
             </div>
             <button type="button">Update</button>
+            <button type="button" onClick={()=>router.push('/book/view')}>Back to books</button>
             </div>
         </div>
     )

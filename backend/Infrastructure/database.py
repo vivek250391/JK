@@ -14,7 +14,7 @@ class database:
         DATABASE_URL = f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
 
         # Create the engine
-        database.engine = create_engine(DATABASE_URL, echo=True) # `echo=True` will log all generated SQL statements
+        database.engine = create_engine(DATABASE_URL,pool_size=20,max_overflow=30,pool_timeout=60, echo=True) # `echo=True` will log all generated SQL statements
         
 
     # Example function to create tables (must be called after models are defined)
