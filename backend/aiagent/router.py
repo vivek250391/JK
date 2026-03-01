@@ -27,7 +27,6 @@ def get_recommendations():
 
     # The resulting vector is in output['embeddings'][0]
     query_vector = output['embeddings']
-    print(query_vector)
     index = faiss.read_index("nomic_faiss_index.bin")
     k = 2
     query_vector_np=np.array(query_vector)

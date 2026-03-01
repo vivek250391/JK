@@ -1,8 +1,18 @@
 'use client'
 import { Header } from "@/components/Header/Header";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 export default function Home() {
   const router=useRouter()
+  useEffect(()=>{
+    if(!localStorage.getItem("Token"))
+    {
+      router.push("/auth/login")
+    }
+  },[])
+
+  
+
   return (
     <div>
       Home page

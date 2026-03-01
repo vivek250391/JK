@@ -2,7 +2,9 @@
 import Styles from "@/components/auth/Login.module.css"
 import { setUsername,setPassword,Login as loginUser } from "@/lib/auth/logineventhandler"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 export function Login(){
+    const router=useRouter()
     const [loginForm,setLoginForm]=useState({username:'',password:''})
     const [error,setError]=useState('')
     const [success,setSuccees]=useState('')
@@ -22,7 +24,7 @@ export function Login(){
                 {success}
             </div>
             <div>
-                <button onClick={()=>loginUser(loginForm,setError,setSuccees)}>Login</button>
+                <button onClick={()=>loginUser(loginForm,setError,setSuccees,router)}>Login</button>
             </div>
             
         </div>

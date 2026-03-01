@@ -6,7 +6,7 @@ export function setPassword(userForm,setUserForm,event){
     setUserForm({...userForm,password:event.target.value})
 }
 
-export async function Login(userForm,setError,setSuccess)
+export async function Login(userForm,setError,setSuccess,router)
 {
     setError('')
     setSuccess('')
@@ -19,10 +19,10 @@ export async function Login(userForm,setError,setSuccess)
         setError('password is empty')
         return
     }
-    await login(userForm,setError,setSuccess)
+    await login(userForm,setError,setSuccess,router)
 }
 
-async function login(userForm,setError,setSuccess){
+async function login(userForm,setError,setSuccess,router){
     let data={}
     console.log(process.env.NEXT_PUBLIC_API_URL)
     const response =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/Login`,{
@@ -35,11 +35,14 @@ async function login(userForm,setError,setSuccess){
 
     if(response.status==200){
         data=await response.json()
+        
         if(data.error)
             setError(data.error)
         else if(data.Token){
             setSuccess("logged in")
             localStorage.setItem("Token",data.Token)
+            localStorage.setItem("userloggedin",true)
+            router.push('/')
         }
             
     }
