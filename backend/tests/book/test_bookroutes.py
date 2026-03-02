@@ -5,8 +5,14 @@ from book.bookapplication import bookApplication
 from app import app
 from Infrastructure.objectstore import objectstore
 from book.bookModel import BookModel
+from common.jwt import verify_jwt_token
 
 client=TestClient(app)
+
+async def override_dependency_auth():
+    return {"token":"valid"}
+
+app.dependency_overrides[verify_jwt_token]=override_dependency_auth
 
 def test_book_get_positive():
     #objectstore.init=Mock(return_value=None)
