@@ -59,7 +59,6 @@ async function addlogin(signupForm,setError,setSuccess){
 
 export async function getuserbyname(username){
     let data={}
-    console.log(process.env.NEXT_PUBLIC_API_URL)
     const response =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users/${username}`,{
         method:"POST"
     })

@@ -11,6 +11,7 @@ export function validateFileType(event,setFileExtension,setError){
 }
 
 export async function sendData(id,setError,setSuccess,fileExtension,fileInputRef){
+    setError('')
     if(fileExtension!=="pdf")
         return
     const file = fileInputRef.current?.files?.[0];
@@ -21,6 +22,9 @@ export async function sendData(id,setError,setSuccess,fileExtension,fileInputRef
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload/${id}`, {
       method: 'POST', // or 'PUT'
+      headers:{
+        authorization:`bearer ${localStorage.getItem("Token")}`
+      },
       body: formData 
       // Do NOT manually set the 'Content-Type' header when using FormData.
       // The browser sets it automatically with the correct boundary.
@@ -29,6 +33,6 @@ export async function sendData(id,setError,setSuccess,fileExtension,fileInputRef
     if(response.status===200)
         setSuccess("file is successfully uploaded")
     else
-        setError(response.status)
+        setError(response.statusText)
 
 }

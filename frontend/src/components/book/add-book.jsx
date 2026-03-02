@@ -29,6 +29,7 @@ export function AddBook(){
             
             {success&&<div><button type="button" onClick={()=>router.push('/book/upload')}>Add book content</button></div>}
             <button type="button" onClick={()=>validatebook(book,setError,setSuccess)}>Add</button>
+            <button type="button" onClick={()=>router.push('/book/view')}>back to books</button>
             </div>
         </div>
     )

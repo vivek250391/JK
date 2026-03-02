@@ -18,7 +18,9 @@ export function IssueBook({id}){
     useEffect(()=>{
         async function getBookByIdWraper(){
                 const data=await getBookById(id)
-                setBook(data)
+                if(data.error.length>0)
+                    setError(data.error)
+                setBook(data.data)
         }
         getBookByIdWraper()
     },[])

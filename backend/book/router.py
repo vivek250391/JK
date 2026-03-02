@@ -1,7 +1,7 @@
 import os
 from uuid import UUID
 
-from fastapi import APIRouter,UploadFile,File
+from fastapi import APIRouter,UploadFile,File,Depends
 from dotenv import load_dotenv
 
 from book.bookapplication import bookApplication
@@ -10,6 +10,7 @@ from book.bookobjectstore import BookObjectStore
 from minio.error import S3Error
 from book.bookissue.bookissueapplication import BookIssueApplication
 from book.bookissue.bookissueModel import BookIssueModel
+from common.jwt import verify_jwt_token
 
 load_dotenv()
 book_router=APIRouter()
@@ -17,67 +18,67 @@ book_router=APIRouter()
 objectStore=BookObjectStore()
 
 @book_router.get("/api/book")
-async def book_get():
+async def book_get(token:dict=Depends(verify_jwt_token)):
     application=bookApplication()
     book=application.get()
     return book
 
 @book_router.get("/api/book/{id}")
-async def book_get(id):
+async def book_get(id,token:dict=Depends(verify_jwt_token)):
     application=bookApplication()
     book=application.getbyID(id)
     return book
 
 @book_router.post("/api/book")
-async def book_add(model:BookModel):
+async def book_add(model:BookModel,token:dict=Depends(verify_jwt_token)):
     application=bookApplication()
     application.add(model)
     return {"success":True}
 
 @book_router.put('/api/books/{id}')
-async def book_update(model:BookModel,id:UUID):
+async def book_update(model:BookModel,id:UUID,token:dict=Depends(verify_jwt_token)):
     application=bookApplication()
     application.update(id=id,model=model)
     return {"success":True}
 
 @book_router.delete('/api/books/{id}')
-async def book_update(id:UUID):
+async def book_update(id:UUID,token:dict=Depends(verify_jwt_token)):
     application=bookApplication()
     application.delete(id)
     return {"success":True}
 
 @book_router.post("/api/books/{id}/borrow")
-async def borrow_book(id,bookIssueModel:BookIssueModel):
+async def borrow_book(id,bookIssueModel:BookIssueModel,token:dict=Depends(verify_jwt_token)):
     application=BookIssueApplication()
     application.issueBook(id,bookIssueModel)
     return {"Success":True}
 
 @book_router.get("/api/books/return")
-async def return_book():
+async def return_book(token:dict=Depends(verify_jwt_token)):
     application=BookIssueApplication()
     data=application.getIssuedbookNotReturned()
     return data
 
 @book_router.post("/api/books/{id}/return")
-async def return_book(id,bookIssueModel:BookIssueModel):
+async def return_book(id,bookIssueModel:BookIssueModel,token:dict=Depends(verify_jwt_token)):
     application=BookIssueApplication()
     application.returnBook(id)
     return {"Success":True}
 
 @book_router.get("/api/books/{user}/{bookIssueId}/isbookissued")
-async def return_book(user,bookIssueId):
+async def return_book(user,bookIssueId,token:dict=Depends(verify_jwt_token)):
     application=BookIssueApplication()
     data=application.isbookissuedToUser(user,bookIssueId)
     return {"isbookIssued":data}
 
 @book_router.post("/api/books/{id}/review")
-async def return_book(id,bookIssueModel:BookIssueModel):
+async def return_book(id,bookIssueModel:BookIssueModel,token:dict=Depends(verify_jwt_token)):
     application=BookIssueApplication()
     application.updateReview(id,bookIssueModel)
     return {"Success":True}
 
 @book_router.post('/api/upload/{id}')
-def upload_file_to_minio(id:UUID,file:UploadFile=File(...)):
+def upload_file_to_minio(id:UUID,file:UploadFile=File(...),token:dict=Depends(verify_jwt_token)):
     filename = file.filename.replace(" ", "-").strip()
     bucketName=os.getenv("MINIO_BUCKET_NAME")
     if filename == '':

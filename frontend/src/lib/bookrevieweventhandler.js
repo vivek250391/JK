@@ -34,6 +34,7 @@ export async function validate(bookId,review,userId,setError,setSuccess){
         method:"POST",
         headers:{
             "Content-Type":"application/json",
+            "authorization":`bearer ${localStorage.getItem("Token")}`
         },
         body:JSON.stringify({review:review,userId:userId})
     })

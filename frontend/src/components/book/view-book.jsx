@@ -6,13 +6,27 @@ import { getBooks } from '@/lib/viewbookeventhandler'
 export function ViewBook(){
     const router=useRouter()
     const [book,setBook]=useState([])
+    const [error,setError]=useState('')
     useEffect(()=>{
         async function asynccall(){
             const data=await getBooks()
-            setBook(data)
+            if(data.error.length===0){
+                setBook(data.data)
+            }
+            else 
+                setError(data.error)
+
+
         }
         asynccall()
     },[])
+
+    function renderError(){
+        if(error.length>0)
+            return (
+        <div>{error}</div>
+        )
+    }
 
     function renderBook(entry,index){
         return (
@@ -27,10 +41,15 @@ export function ViewBook(){
     }
 
     return (
+        <div>
+        <div className={styles.error}>{error.length>0&&<div>{error}</div>}</div>
+        <div><button type="button" onClick={()=>router.push(`/book/add`)}>Add Book</button></div>
        <div className={styles.viewBooks}>
+        
         {book.map((entry,index)=>renderBook(entry,index))}
             
         
        </div> 
+       </div>
     )
 }

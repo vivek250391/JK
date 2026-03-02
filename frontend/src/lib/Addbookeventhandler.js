@@ -23,6 +23,7 @@ async function addbook(book,setError,setSuccess){
         method:"POST",
         headers:{
             "Content-Type":"application/json",
+            "authorization":`bearer ${localStorage.getItem("Token")}`
         },
         body:JSON.stringify({title:book.title,author:book.author,genre:book.genre})
     })
