@@ -24,7 +24,7 @@ jest.mock('@/components/Header/Header',()=>{
 describe('Home',()=>{
     it('renders div',async ()=>{
         render(<Home />)
-        const div = await screen.findByText(/Home Page/i)
+        const div = screen.getByText(/Home Page/i)
         expect (div).toBeInTheDocument()
     })
 })

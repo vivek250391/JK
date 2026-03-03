@@ -48,3 +48,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 backend/nomic_faiss_index.bin
+frontend/package-lock.json

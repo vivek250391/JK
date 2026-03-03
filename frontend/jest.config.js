@@ -1,7 +1,13 @@
+import nextJest from 'next/jest.js'
 /**
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
+
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+})
 
 /** @type {import('jest').Config} */
 const config = {
@@ -93,6 +99,8 @@ const config = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
    moduleNameMapper: {
       '^@/components/(.*)$': '<rootDir>/src/components/$1',
+      '^.+\\.module\\.(css|sass|scss)$': "identity-obj-proxy",
+      "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.js"
 
    },
 
@@ -179,7 +187,9 @@ const config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  // transform: {
+  //   "^.+\\.(js|jsx)$": "babel-jest"
+  // }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -200,4 +210,5 @@ const config = {
   // watchman: true,
 };
 
-module.exports = config;
+//module.exports = config;
+export default createJestConfig(config)
