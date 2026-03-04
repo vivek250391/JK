@@ -21,12 +21,6 @@ export function ViewBook(){
         asynccall()
     },[])
 
-    function renderError(){
-        if(error.length>0)
-            return (
-        <div>{error}</div>
-        )
-    }
 
     function renderBook(entry,index){
         return (

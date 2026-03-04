@@ -3,7 +3,7 @@ import styles from '@/components/Header/Header.module.css'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 export function Header({heading}){
-    const [isuserloggedin,setIsUserLoggedin]=useState(localStorage.getItem("userloggedin"))
+    const [isuserloggedin,setIsUserLoggedin]=useState("false")
     const router=useRouter()
     
    
