@@ -2,10 +2,17 @@
 - clone the repository
 - copy .env and put proper values
 - run docker compose up command
+- make sure ollama instance is running
+
+## Note :about running ollama instance seperately
+it has been observed that running ollama via docker does not use GPU(nvidia) at this point in time on windows hence a seperate instance of ollama is used to enhance performance of the running instance of docker compose
 
 # Run the Application in dev environment
 - clone the repository
 - copy .env and put proper values
+
+## ollama
+install ollama instance
 ## backend 
 ```
 python -m env luminalibeenv
@@ -14,6 +21,10 @@ pip install -r requirements.txt
 fastapi dev app.py
 for prod mode run
 fastapi run app.py
+```
+- running tests
+```
+python -m pytest
 ```
 
 ## database
@@ -32,7 +43,10 @@ docker run -d -p 9000:9000 -p 9001:9001 --name minio-server -e MINIO_ROOT_USER=m
 
 
 ## frontend
-npm run dev
+```
+npm run dev for developement server
+npm run test for running tests
+```
 
 # project Structure
 
