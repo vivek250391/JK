@@ -2,6 +2,10 @@ export async function isbookIssuedToUser(userId,bookissueId){
     let data={}
     const response =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${userId}/${bookissueId}/isbookissued`,{
         method:"GET",
+         headers:{
+            "Content-Type":"application/json",
+            "authorization":`bearer ${localStorage.getItem("Token")}`
+        },
     })
     
     if(response.status===200)
@@ -9,6 +13,10 @@ export async function isbookIssuedToUser(userId,bookissueId){
         data=await response.json()
         return data
        
+    }
+    else if(response.status===401)
+    {
+        return {data:{},error:response.statusText}
     }
     else
     {
