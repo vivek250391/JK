@@ -3,7 +3,6 @@ import {render,screen} from '@testing-library/react'
 import { ViewBook } from "../src/components/book/view-book";
 import { getBooks,getBookById } from '../src/lib/viewbookeventhandler';
 import fetchMock from "jest-fetch-mock"
-import { unauthorized } from 'next/navigation';
 fetchMock.enableMocks();
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(() => ({

@@ -99,6 +99,7 @@ const config = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
    moduleNameMapper: {
       '^@/components/(.*)$': '<rootDir>/src/components/$1',
+      '^@/app/(.*)$': '<rootDir>/src/app/$1',
       '^.+\\.module\\.(css|sass|scss)$': "identity-obj-proxy",
       "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.js"
 
