@@ -3,7 +3,6 @@
 export async function getBooks(){
     let data;
     const token=localStorage.getItem("Token")
-    console.log(token)
     const res =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book`,{
         method:"GET",
         headers:{

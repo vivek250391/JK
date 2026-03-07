@@ -1,7 +1,7 @@
-export async function validatebook(book,setError,setSuccess){
-    setError("")
-    setSuccess("")
-    if(book.author===""){
+export async function validate(id,book,setError,setSuccess){
+  setError("")
+  setSuccess("")
+   if(book.author===""){
         setError("Author name is empty")
         return
     }
@@ -13,13 +13,13 @@ export async function validatebook(book,setError,setSuccess){
         setError("title is empty")
         return
     }
-    await addbook(book,setError,setSuccess)    
+    updateBook(id,book,setError,setSuccess)
 }
 
-async function addbook(book,setError,setSuccess){
+async function updateBook(id,book,setError,setSuccess){
     let data={}
-    const response =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/book`,{
-        method:"POST",
+    const response =await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${id}`,{
+        method:"PUT",
         headers:{
             "Content-Type":"application/json",
             "authorization":`bearer ${localStorage.getItem("Token")}`
@@ -30,12 +30,10 @@ async function addbook(book,setError,setSuccess){
     if(response.status===200)
     {
         data=await response.json()
-        console.log(data.success)
-        setSuccess("Data saved successfully.please add actual book")
+        setSuccess("Data updated successfully")
     }
     else
     {
-        setError(response.status)
+        setError(response.statusText)
     }
-    
 }
