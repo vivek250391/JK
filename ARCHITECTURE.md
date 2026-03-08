@@ -28,6 +28,7 @@ ________________________________________________________________________________
 - **SQLModel**-fits with ease with fastapi
 -  **pydantic** -model validation
 -  **asyncio** - connected/detached thread execution
+-  **Ollama PC instance** - able to use GPU for model working
 
 
 
@@ -48,6 +49,11 @@ ________________________________________________________________________________
 - **Framework** Nextjs(in built routing,usefull hooks like use swr,productio grade framework)
 - **extrnalAPIcall client** fetch
 - **Styling** Vanilla Css with modules
+
+## AI
+- **Ollama3.2** ai based reasoning
+- **nomic-text** for vector search anad vectorization
+- **faiss-cpu** vector database
 
 ## database schema(entities)
 
