@@ -112,6 +112,11 @@ src
 
 ```
 
+### folder structure for testing(same level as src)
+```
+__tests__
+```
+
 ### Application routes
 - **auth** login , profile, signout,signup
 - **book** add,delete/id, upload/id, view/id, update/id
